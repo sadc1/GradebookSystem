@@ -1,0 +1,3 @@
+C:/Users/MCSad/Desktop/Software/C++/grading system/GradebookSystem/build/CMakeFiles/GradebookSystem.dir
+C:/Users/MCSad/Desktop/Software/C++/grading system/GradebookSystem/build/CMakeFiles/edit_cache.dir
+C:/Users/MCSad/Desktop/Software/C++/grading system/GradebookSystem/build/CMakeFiles/rebuild_cache.dir

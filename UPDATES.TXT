@@ -1,4 +1,27 @@
-CURRENT VERSION: v0.0.1
+CURRENT VERSION: v0.0.3
 
 v0.0.1
 -Working with only a gradebook for a specific course section now, so some functions are unused. The plan in the future is to make it for all students in all courses I would teach.
+
+v0.0.2
+-Added CMAKE building to the project using these commands in VS Code PowerShell in the root directory of GradebookSystem.
+-Built successfully.
+Remove-Item -Recurse -Force build
+mkdir build
+cd build
+cmake ".." -G "MinGW Makefiles"
+mingw32-make
+-Removed unnecessary defective includes in classes with circular dependencies, primarily CourseBase, CourseSection and Student. Turns out the includes are not needed if only a pointer or reference is used on that data type.
+-The exe is built as GradebookSystem.exe in the build folder. PowerShell does not allow direct command loading, so .\GradebookSystem.exe loaded it.
+-Program ran but the text file failed to open.
+-Rebuild file with command
+    cmake --build .
+    Run with
+    .\GradebookSystem.exe
+-Named GradebookSystem.exe because of this line in CMakeLists.text
+    add_executable(GradebookSystem ${SOURCES})
+
+v0.0.3
+-Iterating through all courses, sections and their students in main.cpp.
+-Submitted.
+-Updated README and explained classes.

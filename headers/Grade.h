@@ -12,6 +12,7 @@ class Grade {
         double getGrade() {return grade;}
         Grade& operator+=(double amount) {
             grade += amount;
+            return *this;
         }
 };
 

@@ -5,41 +5,51 @@
 #include "CourseSection.h"
 #include "Date.h"
 #include "Grade.h"
-#include "GradebookLibrary.h"
 #include "Student.h"
 #include <fstream>
 #include <string>
 #include <stdexcept>
 #include <iostream>
 #include <sstream>
+#include <filesystem>
 using namespace std;
 
+//Current path is GradebookSystem/build as the exe is in there
 void Gradebook::StudentInit() {
-    ifstream file("students.txt");
+    filesystem::path filePath = filesystem::current_path() / ".." / "test" / "students.txt"; //Works
+    ifstream file(filePath);
+    //ifstream file("..test/students.txt");
+    //std::filesystem::path currentPath = std::filesystem::current_path(); Current directory printed is the build folder
+    //std::cout << "Current directory: " << currentPath.string() << std::endl; 
     if (!file) {
         throw runtime_error("Student text file failed to open.");
     }
+    cout << "Successfully found student file" << endl;
     file >> studentAmount;
     students = new Student[studentAmount];
-    for (int i = 1; i <= studentAmount; i++) {
-        string first;
-        string last;
-        string add;
-        file >> first;
-        file >> last;
-        getline(file, add);
-        students[i] = Student(first, last, i, Address(add));
+    for (int i = 0; i < studentAmount; i++) {
+        string first, last;
+        string street, city, state, zip;
+
+        file >> first >> last >> street >> city >> state >> zip;
+        cout << first << last << street << city << state << zip << endl;
+        students[i] = Student(first, last, i, Address(street, city, state, stoi(zip)));
+        cout << students[i].fullName() << endl;
     }
+    cout << "Closing student file" << endl;
     file.close();
 }
 
 void Gradebook::CourseInit() {
-    ifstream file("courses.txt");
+    filesystem::path filePath = filesystem::current_path() / ".." / "test" / "courses.txt";
+    ifstream file(filePath);
+    cout << "Looking for course file" << endl;
     if (!file) {
         throw runtime_error("Courses text file failed to open.");
     }
+    cout << "Opened course file" << endl;
     file >> courseAmount;
-    for (int i = 1; i <= courseAmount; i++) {
+    for (int i = 0; i < courseAmount; i++) {
         string deptAndId;
         string dept;
         string id;
@@ -48,7 +58,7 @@ void Gradebook::CourseInit() {
         dept = deptAndId.substr(0, 4);
         id = deptAndId.substr(4);
         addCourse(new CourseBase(dept, stoi(id), name));
-        ifstream sectionFile(dept + id);
+        ifstream sectionFile(filePath.parent_path() / "sections" / (dept + id + ".txt"));
         if (!sectionFile) {
             throw runtime_error("Section file not found");
         }
@@ -86,12 +96,34 @@ Student* Gradebook::getStudent(int id) {
     return &students[id];
 }
 
-Gradebook::Gradebook(vector<CourseBase*> courseList) {
+Gradebook::Gradebook() {
+    cout << "Running StudentInit" << endl;
     StudentInit();
+    cout << "Running CourseInit" << endl;
     CourseInit();
-    // try {
-    //     init();
-    // } catch (const runtime_error& error){
-        
-    // }
+    cout << "Done initializing Gradebook" << endl;
+}
+
+Gradebook::Gradebook(const Gradebook& other) {
+    students = new Student[other.studentAmount];
+    for (int i = 0; i < other.studentAmount; i++) {
+        students[i] = other.students[i];
+    }
+}
+
+Gradebook::~Gradebook() {
+    delete[] students;
+    students = nullptr;
+}
+
+Gradebook& Gradebook::operator=(const Gradebook& other) {
+    if (other.students == students) {
+        return *this;
+    }
+    delete[] students;
+    students = new Student[other.studentAmount];
+    for (int i = 0; i < other.studentAmount; i++) {
+        students[i] = other.students[i];
+    }
+    return *this;
 }

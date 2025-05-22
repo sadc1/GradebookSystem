@@ -13,7 +13,7 @@ class Address {
         string parsed;
     public:
         Address() {str = "default"; city = "default"; state = "default"; zip = 0;}
-        Address(string parsed) : parsed(parsed) {
+        Address(string parsed) : parsed(parsed) { //One entire string read from the rest of the line after the first and last name, has spaces
             istringstream iss(parsed);
             iss >> str >> city >> state >> zip;
         }
@@ -22,6 +22,7 @@ class Address {
         string getStreet() {return str;}
         string getCity() {return city;}
         string getState() {return state;}
+        string formattedAddress() {return str + " " + city + " " + state + " " + to_string(zip);}
         int getZipcode() {return zip;}
 };
 

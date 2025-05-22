@@ -3,7 +3,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "Grade.h"
 #include "Date.h"
 #include "AssignmentSubmission.h"
 using namespace std;
