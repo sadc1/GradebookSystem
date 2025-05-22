@@ -1,0 +1,4 @@
+CURRENT VERSION: v0.0.1
+
+v0.0.1
+-Working with only a gradebook for a specific course section now, so some functions are unused. The plan in the future is to make it for all students in all courses I would teach.

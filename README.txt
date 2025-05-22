@@ -1,0 +1,2 @@
+# Grading Book Project (C++)
+Made by Sadmir C. as an honors project. Intended to be used for future grading for when I become a teacher. For now, all data is stored locally and any data made is just test cases.
