@@ -1,5 +1,5 @@
 # Grading Book Project (C++)
-Made by Sadmir C. as an honors project. Intended to be used for future grading for when I become a teacher. For now, all data is stored locally and any data made is just test cases.
+Made as an honors project. Intended to be used for future grading for when I become a teacher. For now, all data is stored locally and any data made is just test cases.
 
 HOW TO USE:
 CMAKE Version 4.0.2 for Windows.
@@ -50,35 +50,3 @@ To Finish/Implement:
     JSON parsing?
     Assignment class
     Assignment grading
-
-Last working output:
-    Running StudentInit
-    Successfully found student file
-    SadmirC.1111_50thStreetBrooklynNY10011
-    Sadmir C.
-    AdmirC.1112_50thStreetBrooklynNY10011
-    Admir C.
-    JohnDoeNIL_NILNILNIL11111
-    John Doe
-    JaneDoeNIL_NILNILNIL11111
-    Jane Doe
-    Closing student file
-    Running CourseInit
-    Looking for course file
-    Opened course file
-    Done initializing Gradebook
-    Printing all students and addresses
-    Sadmir C. 1111_50thStreet Brooklyn NY 10011
-    Admir C. 1112_50thStreet Brooklyn NY 10011
-    John Doe NIL_NIL NIL NIL 11111
-    Jane Doe NIL_NIL NIL NIL 11111
-    Printing all courses
-    CISC1115 IntroToJava
-    MW11: Sadmir C. 0
-    John Doe 2
-    TUE12: Admir C. 1
-    Jane Doe 3
-    MATH1201 Calculus1
-    MW3: Admir C. 1
-    John Doe 2
-    Jane Doe 3
